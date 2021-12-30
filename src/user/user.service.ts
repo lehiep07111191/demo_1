@@ -1,5 +1,4 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/user.dto';
 import { UserRepository } from './repository/user.repository';
 
 @Injectable()
@@ -13,6 +12,11 @@ export class UserService {
         if(oldModel) {
             throw new BadRequestException("Email đã tồn tại trong hệ thống") 
         }
-        return this.repository.create(dto)
+        return await this.repository.create(dto)
+    }
+
+    async findAll(query) {
+        const _query = query 
+        return await this.repository.findAll(_query)
     }
 }
