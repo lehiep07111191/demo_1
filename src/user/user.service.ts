@@ -8,7 +8,8 @@ export class UserService {
     ){}
 
     async createrUser(dto: any) {
-        const oldModel = this.repository.findOne({email: dto.email})
+        const oldModel = await this.repository.findOne({email: dto.email})
+        console.log(oldModel)
         if(oldModel) {
             throw new BadRequestException("Email đã tồn tại trong hệ thống") 
         }
@@ -18,5 +19,9 @@ export class UserService {
     async findAll(query) {
         const _query = query 
         return await this.repository.findAll(_query)
+    }
+
+    async findById(id) {
+        return await this.repository.findOne({id})
     }
 }

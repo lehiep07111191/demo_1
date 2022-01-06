@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/auth/guards/authenticated.guard';
 import { UserService } from './user.service';
 
@@ -12,6 +12,11 @@ export class UserController {
     @Get('')
     async findAll(@Query() query) {
         return await this.service.findAll(query)
+    }
+
+    @Get('profile/:id')
+    async findById(@Param() param) {
+        return await this.service.findById(param.id)
     }
 
     @Post('')

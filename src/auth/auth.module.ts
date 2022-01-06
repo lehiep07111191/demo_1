@@ -7,6 +7,7 @@ import { LocalStrategy } from './strategy/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from '../shareds/constant/constant';
 import { SessionSerializer } from './session.serializer';
+import { JwtStrategy } from './strategy/jwt.strategy';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { SessionSerializer } from './session.serializer';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, SessionSerializer]
+  providers: [AuthService, LocalStrategy, SessionSerializer, JwtStrategy]
 })
 export class AuthModule {}
